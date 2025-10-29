@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Test Python compilation
+      run: |
+        python -m py_compile CreateCollection.py
+        python -m py_compile AddFaceToCollection.py
+        python -m py_compile FaceRecognition.py
